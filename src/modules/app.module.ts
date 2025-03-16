@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
+import { ClinicModule } from './clinic/clinic.module';
+import { DonationModule } from './donation/donation.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,6 +22,8 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    ClinicModule,
+    DonationModule,
   ],
   controllers: [],
   providers: [],
