@@ -4,6 +4,9 @@ import { ConfigModule } from '@nestjs/config';
 
 import { ClinicModule } from './clinic/clinic.module';
 import { DonationModule } from './donation/donation.module';
+import { DonorModule } from './donor/donor.module';
+import { DonorClinicModule } from './donor_clinic/DonorClinic.module';
+import { PatientModule } from './patient/Patient.module';
 
 @Module({
   imports: [
@@ -12,7 +15,7 @@ import { DonationModule } from './donation/donation.module';
       envFilePath: ['.env.development.local', '.env'],
     }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: Number(process.env.DATABASE_PORT),
       username: process.env.DATABASE_USERNAME,
@@ -24,6 +27,9 @@ import { DonationModule } from './donation/donation.module';
     }),
     ClinicModule,
     DonationModule,
+    DonorModule,
+    DonorClinicModule,
+    PatientModule,
   ],
   controllers: [],
   providers: [],
