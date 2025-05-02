@@ -13,6 +13,9 @@ export class Clinic {
   @Column({ name: 'phone_number', nullable: false, unique: true })
   phone_number: string;
 
+  @Column({ name: 'password', nullable: false, unique: true })
+  password: string;
+
   @Column({ name: 'city', nullable: false })
   city: string;
 

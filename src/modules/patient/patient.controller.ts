@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { PatientService } from './Patient.service';
+import { PatientService } from './patient.service';
 import { PatientDto } from './dto/Patient.dto';
 
 @Controller('patient')
@@ -31,10 +31,7 @@ export class PatientController {
   }
 
   @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() updatePatientDto: PatientDto,
-  ) {
+  async update(@Param('id') id: string, @Body() updatePatientDto: PatientDto) {
     await this.patientService.update(+id, updatePatientDto);
     return { result: 'OK' };
   }

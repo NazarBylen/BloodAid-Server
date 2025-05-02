@@ -12,6 +12,12 @@ export class PatientDto {
   @IsString()
   fullName?: string;
 
+  @IsString()
+  email?: string;
+
+  @IsString()
+  password?: string;
+
   blood_type?: patientBloodType;
 
   rh_factor?: patientRhFactor;

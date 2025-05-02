@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DonorClinicService } from './DonorClinic.service';
-import { DonorClinicController } from './DonorClinic.controller';
+import { DonorClinicService } from './donorClinic.service';
+import { DonorClinicController } from './donorClinic.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Donor } from '../../entities/donor.entity';
 import { DonorClinic } from '../../entities/donor_clinic.entity';

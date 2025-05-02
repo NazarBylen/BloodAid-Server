@@ -27,6 +27,12 @@ export class Patient {
   @Column({ name: 'rh_factor', nullable: false })
   rh_factor: patientRhFactor;
 
+  @Column({ unique: true })
+  public email: string;
+
+  @Column()
+  public password: string;
+
   @OneToMany(() => Donation, (donation) => donation.patient)
   donation: Donation[];
 }

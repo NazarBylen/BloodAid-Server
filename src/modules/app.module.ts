@@ -5,8 +5,10 @@ import { ConfigModule } from '@nestjs/config';
 import { ClinicModule } from './clinic/clinic.module';
 import { DonationModule } from './donation/donation.module';
 import { DonorModule } from './donor/donor.module';
-import { DonorClinicModule } from './donor_clinic/DonorClinic.module';
-import { PatientModule } from './patient/Patient.module';
+import { DonorClinicModule } from './donor_clinic/donorClinic.module';
+import { PatientModule } from './patient/patient.module';
+import { AuthModule } from "./auth/auth.module";
+import { AuthClinicModule } from "./authClinic/authClinic.module";
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { PatientModule } from './patient/Patient.module';
     DonorModule,
     DonorClinicModule,
     PatientModule,
+    AuthModule,
+    AuthClinicModule,
   ],
   controllers: [],
   providers: [],

@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { DonorClinicService } from './DonorClinic.service';
+import { DonorClinicService } from './donorClinic.service';
 import { DonorClinicDto } from './dto/DonorClinic.dto';
 
 @Controller('donorClinic')
