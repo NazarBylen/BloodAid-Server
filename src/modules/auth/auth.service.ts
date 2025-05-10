@@ -1,18 +1,20 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import {
   Patient,
   patientBloodType,
   patientRhFactor,
 } from '../../entities/patient.entity';
 import { PatientDataDto } from './dto/auth.dto';
+import { Donation } from '../../entities/donation.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(Patient)
     private patientRepository: Repository<Patient>,
+    private dataSource: DataSource,
   ) {}
 
   async signUp(patientData: PatientDataDto) {
@@ -87,7 +89,10 @@ export class AuthService {
   }
 
   async deletePatient(id: number) {
-    const user = await this.patientRepository.findOneBy({ id });
-    await this.patientRepository.delete(user);
+    await this.dataSource.transaction(async (manager) => {
+      await manager.delete(Donation, { patient: { id: id } });
+      const user = await this.patientRepository.findOneBy({ id });
+      await this.patientRepository.delete(user);
+    });
   }
 }

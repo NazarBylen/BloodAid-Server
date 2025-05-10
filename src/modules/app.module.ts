@@ -7,8 +7,9 @@ import { DonationModule } from './donation/donation.module';
 import { DonorModule } from './donor/donor.module';
 import { DonorClinicModule } from './donor_clinic/donorClinic.module';
 import { PatientModule } from './patient/patient.module';
-import { AuthModule } from "./auth/auth.module";
-import { AuthClinicModule } from "./authClinic/authClinic.module";
+import { AuthModule } from './auth/auth.module';
+import { AuthClinicModule } from './authClinic/authClinic.module';
+import { AuthDonorModule } from './authDonor/authDonor.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { AuthClinicModule } from "./authClinic/authClinic.module";
     PatientModule,
     AuthModule,
     AuthClinicModule,
+    AuthDonorModule,
   ],
   controllers: [],
   providers: [],

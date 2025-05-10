@@ -14,5 +14,8 @@ export class ClinicDto {
   @IsString()
   city?: string;
 
+  @IsString()
+  password?: string;
+
   donation?: Donation[];
 }

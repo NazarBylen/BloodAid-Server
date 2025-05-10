@@ -1,17 +1,20 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { authClinicDto } from './dto/authClinic.dto';
 import { Clinic } from '../../entities/clinic.entity';
+import { Donation } from '../../entities/donation.entity';
+import { DonorClinic } from '../../entities/donor_clinic.entity';
 
 @Injectable()
 export class AuthClinicService {
   constructor(
     @InjectRepository(Clinic)
     private clinicRepository: Repository<Clinic>,
+    private dataSource: DataSource,
   ) {}
 
-  async signUp(clinicData: authClinicDto) {
+  async clinicSignUp(clinicData: authClinicDto) {
     try {
       const { name, password, phone_number, city } = clinicData;
 
@@ -38,7 +41,7 @@ export class AuthClinicService {
     }
   }
 
-  async logIn(clinicData: authClinicDto) {
+  async clinicLogIn(clinicData: authClinicDto) {
     try {
       const { phone_number, password } = clinicData;
 
@@ -62,21 +65,18 @@ export class AuthClinicService {
     }
   }
 
-  async changePatientPassword(id: number, newPassword: string) {
+  async changeClinicPassword(id: number, newPassword: string) {
     const clinic = await this.clinicRepository.findOneBy({ id });
     clinic.password = newPassword;
     await this.clinicRepository.save(clinic);
   }
 
-  async editPatientProfile(id: number, clinicData: authClinicDto) {
-    const clinic = await this.clinicRepository.findOneBy({ id });
-
-    Object.assign(clinic, clinicData);
-    await this.clinicRepository.save(clinic);
-  }
-
-  async deletePatient(id: number) {
-    const clinic = await this.clinicRepository.findOneBy({ id });
-    await this.clinicRepository.delete(clinic);
+  async deleteClinic(id: number) {
+    await this.dataSource.transaction(async (manager) => {
+      await manager.delete(Donation, { clinic: { id: id } });
+      await manager.delete(DonorClinic, { clinic: { id: id } });
+      const clinic = await this.clinicRepository.findOneBy({ id });
+      await this.clinicRepository.delete(clinic);
+    });
   }
 }

@@ -7,7 +7,7 @@ export class DonorDto {
   id?: number;
 
   @IsString()
-  fullName?: string;
+  full_name?: string;
 
   blood_type: donorBloodType;
 

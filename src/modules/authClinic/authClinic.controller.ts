@@ -8,12 +8,12 @@ export class AuthClinicController {
 
   @Post('/sign-up')
   async signUpPatient(@Body() clinicData: authClinicDto) {
-    return await this.authClinicService.signUp(clinicData);
+    return await this.authClinicService.clinicSignUp(clinicData);
   }
 
   @Post('/login')
   async logInPatient(@Body() clinicData: authClinicDto) {
-    return await this.authClinicService.logIn(clinicData);
+    return await this.authClinicService.clinicLogIn(clinicData);
   }
 
   @Patch('/change-password/:id')
@@ -21,19 +21,11 @@ export class AuthClinicController {
     @Param('id') id: number,
     @Body('newPassword') newPassword: string,
   ) {
-    return await this.authClinicService.changePatientPassword(id, newPassword);
+    return await this.authClinicService.changeClinicPassword(id, newPassword);
   }
 
-  @Patch('/edit-profile/:id')
-  async editPatientProfile(
-    @Param('id') id: number,
-    @Body() clinicData: authClinicDto,
-  ) {
-    return await this.authClinicService.editPatientProfile(id, clinicData);
-  }
-
-  @Delete('/delete/:id')
-  async deletePatient(@Param('id') id: number) {
-    return await this.authClinicService.deletePatient(id);
+  @Delete('/delete-clinic/:id')
+  async deleteClinic(@Param('id') id: number) {
+    return await this.authClinicService.deleteClinic(id);
   }
 }

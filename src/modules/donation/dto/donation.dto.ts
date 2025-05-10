@@ -7,6 +7,9 @@ export class DonationDto {
   id?: number;
 
   @IsString()
+  dateRequested: string;
+
+  @IsString()
   dateTaken?: string;
 
   @IsString()

@@ -30,7 +30,7 @@ export class Patient {
   @Column({ unique: true })
   public email: string;
 
-  @Column()
+  @Column({ name: 'password', nullable: false })
   public password: string;
 
   @OneToMany(() => Donation, (donation) => donation.patient)

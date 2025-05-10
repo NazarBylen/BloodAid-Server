@@ -14,7 +14,10 @@ export class Donation {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'date_taken' })
+  @Column({ name: 'date_requested', nullable: true })
+  dateRequested: string;
+
+  @Column({ name: 'date_taken', nullable: true })
   dateTaken: string;
 
   @ManyToOne(() => Patient, (patient) => patient.donation, {
@@ -25,7 +28,7 @@ export class Donation {
   patient: Patient;
 
   @ManyToOne(() => Clinic, (clinic) => clinic.donation, {
-    nullable: false,
+    nullable: true,
     eager: true,
   })
   @JoinColumn({ name: 'clinicId', referencedColumnName: 'id' })

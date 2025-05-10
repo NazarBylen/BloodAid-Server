@@ -30,4 +30,8 @@ export class DonorClinicService {
   remove(id: number) {
     return this.donorClinicRepository.delete({ id });
   }
+
+  async findBloodDonationByDonor(id: number) {
+    return this.donorClinicRepository.find({ where: { donor: { id: id } } });
+  }
 }

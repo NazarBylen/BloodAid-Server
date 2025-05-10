@@ -21,6 +21,12 @@ export class Donor {
   @Column({ name: 'full_name', nullable: false, unique: true })
   fullName: string;
 
+  @Column({ unique: true })
+  public email: string;
+
+  @Column({ name: 'password', nullable: false })
+  public password: string;
+
   @Column({
     name: 'blood_type',
     nullable: false,
