@@ -10,6 +10,7 @@ import { PatientModule } from './patient/patient.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthClinicModule } from './authClinic/authClinic.module';
 import { AuthDonorModule } from './authDonor/authDonor.module';
+import { BloodPredictionModule } from './blood_prediction/blood_prediction.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { AuthDonorModule } from './authDonor/authDonor.module';
     AuthModule,
     AuthClinicModule,
     AuthDonorModule,
+    BloodPredictionModule,
   ],
   controllers: [],
   providers: [],
