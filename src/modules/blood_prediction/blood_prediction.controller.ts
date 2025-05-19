@@ -8,14 +8,8 @@ export class BloodPredictionController {
   ) {}
 
   @Post('predict')
-  async predict(
-    @Body() body: { day_of_week: number; season: number; holidays: number },
-  ) {
-    const { day_of_week, season, holidays } = body;
-    return this.bloodPredictionService.predictDemand(
-      day_of_week,
-      season,
-      holidays,
-    );
+  async predict(@Body() body: { month: number; region: number; year: number }) {
+    const { month, region, year } = body;
+    return this.bloodPredictionService.predictDemand(month, region, year);
   }
 }
