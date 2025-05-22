@@ -34,4 +34,13 @@ export class DonorClinicService {
   async findBloodDonationByDonor(id: number) {
     return this.donorClinicRepository.find({ where: { donor: { id: id } } });
   }
+
+  async findBloodDonationByClinic(id: number) {
+    return this.donorClinicRepository.find({
+      where: {
+        clinic: { id: id },
+        acceptedOrRejected: true,
+      },
+    });
+  }
 }

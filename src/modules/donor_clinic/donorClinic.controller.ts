@@ -49,4 +49,9 @@ export class DonorClinicController {
   async findBloodDonationByDonor(@Param('id') id: string) {
     return await this.donorClinicService.findBloodDonationByDonor(Number(id));
   }
+
+  @Get('/byClinic/:id')
+  async findBloodDonationByClinic(@Param('id') id: string) {
+    return await this.donorClinicService.findBloodDonationByClinic(Number(id));
+  }
 }

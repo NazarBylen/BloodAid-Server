@@ -14,8 +14,11 @@ export class DonorClinic {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'date_taken' })
-  dateTaken: string;
+  @Column({ name: 'date_requested_to_donate_blood', nullable: false })
+  dateRequestedToDonateBlood: string;
+
+  @Column({ name: 'accepted_or_rejected', nullable: true })
+  acceptedOrRejected: boolean;
 
   @ManyToOne(() => Donor, (donor) => donor.donorClinic, {
     nullable: false,
