@@ -19,6 +19,15 @@ export class DonationService {
     return this.donationRepository.find();
   }
 
+  findAllBloodRequestsByPatient(patientId: number) {
+    return this.donationRepository.find({
+      where: {
+        patient: { id: patientId },
+      },
+      relations: ['patient'],
+    });
+  }
+
   findOne(id: number) {
     return this.donationRepository.findOneBy({ id });
   }

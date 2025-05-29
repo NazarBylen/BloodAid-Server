@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsString } from 'class-validator';
+import { IsInt, IsString } from 'class-validator';
 import { Donor } from '../../../entities/donor.entity';
 import { Clinic } from '../../../entities/clinic.entity';
 
@@ -9,8 +9,8 @@ export class DonorClinicDto {
   @IsString()
   dateRequestedToDonateBlood: string;
 
-  @IsBoolean()
-  acceptedOrRejected: boolean;
+  @IsString()
+  acceptedOrRejected: string;
 
   donor?: Donor;
 

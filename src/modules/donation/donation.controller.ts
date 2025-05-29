@@ -30,6 +30,13 @@ export class DonationController {
     return await this.donationService.findOne(+id);
   }
 
+  @Get('blood-requests-by-patient/:id')
+  async findAllBloodRequestsByPatient(@Param('id') id: string) {
+    return await this.donationService.findAllBloodRequestsByPatient(
+      Number(+id),
+    );
+  }
+
   @Patch(':id')
   async update(
     @Param('id') id: string,

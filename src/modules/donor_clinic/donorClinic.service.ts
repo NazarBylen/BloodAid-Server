@@ -39,7 +39,7 @@ export class DonorClinicService {
     return this.donorClinicRepository.find({
       where: {
         clinic: { id: id },
-        acceptedOrRejected: true,
+        acceptedOrRejected: 'true',
       },
     });
   }
